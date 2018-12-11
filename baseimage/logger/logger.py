@@ -14,19 +14,20 @@ def get_default_logger(name=CONFIG['service_name'], logging_dir=None):
             following path: <base_path>/<service_name>/logs/<logger_name>
     """
     if logging_dir is None:
-        logging_dir = os.path.join(CONFIG['base_path'], "logs", name)
+        logging_dir = os.path.join(CONFIG['base_path'], "logs/{}.log".format(name))
 
     logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
     formatter = logging.Formatter('(%(asctime)s)[%(levelname)s]: %(message)s')
-
-    file_handler = logging.FileHandler(filename=logging_dir)
-    file_handler.setLevel(logging.INFO)
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
 
     stream_handler = logging.StreamHandler()
     stream_handler.setLevel(logging.WARN)
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
+
+    file_handler = logging.FileHandler(filename=logging_dir)
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
 
     return logger
