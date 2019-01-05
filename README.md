@@ -7,8 +7,8 @@
     - \__init__.py
     - src
       - ...
-    - resourc1es
-      - ...
+    - resources
+      - config.yml
   - server.py
   - requirements.txt
   - setup.py
@@ -19,8 +19,7 @@
 
 ## The DockerFile Template
 
-1. Set SERVICE_NAME in DockerFile
-2. In service entrypoint, call /opt/lib/baseimage/runtime.setup.sh to set the rest of the environment
+## The Library
 
 ## Standard Available Environment Variables
 
