@@ -12,6 +12,6 @@ def get_flask_server(name=CONFIG['service_name']):
 
     @app.route("/core/health")
     def health_check():
-        return {}
+        return "{}"
 
     return app
