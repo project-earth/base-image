@@ -1,4 +1,4 @@
-This repository hosts the docker base image for my projects. The base image defines the directory structure that applications can expect in the container including volume-mounted directories and provides tools to access core service functionality (logging, monitoring, configuration). Our base image is built on the [`python3.6-slim` ](https://github.com/docker-library/python/blob/35566cb6b14961c369e935b85b4c8879e6901ccc/3.6/buster/slim/Dockerfile) Docker image.
+This repository hosts the docker base image for containerized micro-service based applications of a small/medium scale (ie. O(20) micro-services running on O(5) machines sharing a single EFS-like filesystem). The base image defines the directory structure that applications can expect in the container including volume-mounted directories and provides tools to access core service functionality (logging, monitoring, configuration). Our base image is built on the [`python3.6-slim` ](https://github.com/docker-library/python/blob/35566cb6b14961c369e935b85b4c8879e6901ccc/3.6/buster/slim/Dockerfile) Docker image.
   
 # Quick Guide
 
