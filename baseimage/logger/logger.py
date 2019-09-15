@@ -14,7 +14,7 @@ def get_default_logger(name=CONFIG['service_name'], logging_dir=None):
             following path: <base_path>/<service_name>/logs/<logger_name>
     """
     if logging_dir is None:
-        logging_dir = os.path.join(CONFIG['base_path'], "logs/{}.log".format(name))
+        logging_dir = os.path.join(CONFIG['log_path'], "{}.log".format(name))
 
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)

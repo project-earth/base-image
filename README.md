@@ -1,5 +1,5 @@
 This repository hosts the docker base image for containerized micro-service based applications of a small/medium scale (ie. O(20) micro-services running on O(5) machines sharing a single EFS-like filesystem). The base image defines the directory structure that applications can expect in the container including volume-mounted directories and provides tools to access core service functionality (logging, monitoring, configuration). Our base image is built on the [`python3.6-slim` ](https://github.com/docker-library/python/blob/35566cb6b14961c369e935b85b4c8879e6901ccc/3.6/buster/slim/Dockerfile) Docker image.
-  
+
 # Quick Guide
 
 Your application repository should have a directory structure as described in the section [below](#standard-directory-structure). Your application Dockerfile should be based on the template we've [provided]([https://github.com/project-earth/baseimage/blob/master/Dockerfile.template](https://github.com/project-earth/baseimage/blob/master/Dockerfile.template)) in this base image. Furthermore, to fully take advantage of the features provided by the base image, you should use the provided [libraries](#library) for monitoring, logging, and configuration parsing.
@@ -36,7 +36,7 @@ Your application repository should be structure in the following way:
 | - entrypoint.sh
 ```
 
-* The `test` directory here is typically expected to mimic the `src` directory but with `test_*` prefixes included for each of the directories and files. 
+* The `test` directory here is typically expected to mimic the `src` directory but with `test_*` prefixes included for each of the directories and files.
 * `requirements.txt` should include the Python requirements for the service. Non-Python requirements should be installed as commands in the Dockerfile.
 * `Dockerfile` is the standard Docker build instruction set and should be based on the template Dockerfile found in this repository.
 * `entrypoint.sh` is the shell script that should be run to start the service.
@@ -62,9 +62,8 @@ inside of shell scripts and are also made available in the parsed configuration 
 
 - **`SERVICE_NAME`:** The name of the service. Defined in the Dockerfile by the developer who should take care that it is used to name the main package directory. In the `CONFIG` dictionary, this is available as `CONFIG['service_name']`.
 - **`BASE_PATH`:** This directory is derived in the Dockerfile as `$LIB_PATH/$SERVICE_NAME` and is the directory where all the source files of the service will be added to. This is also the default workdir of the docker image.
-
-Three additional environment variables are available in the docker container but not in the configuration file.
-
-* **`LIB_PATH`:** : Fixed variable giving the path to the directory storing all the libraries installed from source which are used by the service. This has a fixed value of `/opt/lib`.
+- **`HOST_NAME`:** A variable set on service runtime indicating the running container's ID.
+* **`LIB_PATH`:** Fixed variable giving the path to the directory storing all the libraries installed from source which are used by the service. This has a fixed value of `/opt/lib`.
 * **`SVC_PATH`:** Fixed variable giving the path to the directory storing the source code of services running in the container. This has a fixed value of `/opt/svc`.
 * **`DAT_PATH`:** Fixed variable giving the path to the directory intended to hold the persistent data of service. This has a fixed value of `/opt/dat`.
+* **`LOG_PATH`:** Fixed variable giving the path to the directory intended to hold the logs of this service's runtime. This has a fixed value of `/opt/dat/logs/$HOSTNAME`.

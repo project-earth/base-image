@@ -8,4 +8,4 @@ ADD . $BASE_PATH
 RUN mkdir $BASE_PATH/logs
 WORKDIR $BASE_PATH
 
-ENTRYPOINT $BASE_PATH/entrypoint.sh
+ENTRYPOINT $LIB_PATH/baseimage/entrypoint.sh
