@@ -18,7 +18,7 @@ def get_default_logger(name=CONFIG['service_name'], logging_dir=None):
 
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
-    formatter = logging.Formatter('(%(asctime)s)[%(levelname)s]: %(message)s')
+    formatter = logging.Formatter('(%(asctime)s)[%(levelname)s]: %(message)s', '%Y-%m-%dT%H:%M:%S+00:00')
 
     stream_handler = logging.StreamHandler()
     stream_handler.setLevel(logging.WARN)
