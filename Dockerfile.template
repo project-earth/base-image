@@ -5,7 +5,6 @@ ENV SERVICE_NAME = EXAMPLE_SERVICE
 
 ENV BASE_PATH $SVC_PATH/$SERVICE_NAME/
 ADD . $BASE_PATH
-RUN mkdir $BASE_PATH/logs
 WORKDIR $BASE_PATH
 
 # ============= Dependencies ============= #

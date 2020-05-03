@@ -15,7 +15,11 @@ def get_configuration(config_path=None):
     with open(config_path, 'r') as file:
         configuration = yaml.load(file)
     configuration['service_name'] = os.environ['SERVICE_NAME']
+    configuration['host_name'] = os.environ['HOST_NAME']
     configuration['base_path'] = os.environ['BASE_PATH']
+    configuration['lib_path'] = os.environ['LIB_PATH']
+    configuration['dat_path'] = os.environ['DAT_PATH']
+    configuration['log_path'] = os.environ['LOG_PATH']
 
     return configuration
 
