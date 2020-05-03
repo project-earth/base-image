@@ -1,11 +1,24 @@
 FROM baseimage
 
-# Set your service name on this line
-ENV SERVICE_NAME
+# SET SERVICE NAME HERE
+ENV SERVICE_NAME = EXAMPLE_SERVICE
 
 ENV BASE_PATH $SVC_PATH/$SERVICE_NAME/
 ADD . $BASE_PATH
 RUN mkdir $BASE_PATH/logs
 WORKDIR $BASE_PATH
+
+# ============= Dependencies ============= #
+
+# INSTALL NON-REQUIREMENTS.TXT DEPENDENCIES HERE
+
+# install pypi dependencies
+ADD ./requirements.txt $BASE_PATH/requirements.txt
+RUN pip install -r requirements.txt
+
+# ============= Source Code ============= #
+
+ADD . $BASE_PATH
+RUN pip install .
 
 ENTRYPOINT $BASE_PATH/entrypoint.sh
